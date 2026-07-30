@@ -38,7 +38,8 @@
     .button:hover{transform:translateY(-2px)}
     .button.red{background:var(--accent)}
     .button.ghost{background:white;color:var(--ink);border:1px solid var(--line);box-shadow:none}
-    .nav .button{padding:8px 22px;font-size:13px;letter-spacing:.12em}
+    .nav .button{padding:8.9px 22px;font-size:13px;letter-spacing:.12em}
+    @media(max-width:900px){.nav .button{padding:6.4px 22px}}
     .hero{padding:98px 0 82px;text-align:center;overflow:hidden;background:#F8F8F8}
     .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #ffd4d4;background:#fff7f7;color:#c32626;border-radius:999px;font-weight:400;font-size:13px}
     .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(245,60,60,.12)}
@@ -46,7 +47,8 @@
     .accent{color:var(--accent)}
     .hero-copy{max-width:720px;margin:0 auto;color:var(--muted);font-size:clamp(18px,2vw,23px);letter-spacing:-.02em}
     .hero-actions{display:flex;justify-content:center;gap:12px;margin-top:34px;flex-wrap:wrap}
-    .micro{margin-top:24px;color:#92929a;font-size:13px}
+    .micro{margin-top:24px;color:#92929a;font-size:14px}
+    @media(max-width:900px){.micro{font-size:12px}}
     .hero-stage{position:relative;margin:78px auto 0;max-width:1050px;min-height:590px}
     .glow{position:absolute;inset:70px 10% 0;background:radial-gradient(circle at center,rgba(245,60,60,.15),rgba(245,60,60,0) 67%);filter:blur(10px)}
     .phone{position:absolute;background:#121214;border:8px solid #121214;border-radius:48px;box-shadow:var(--shadow);overflow:hidden}
@@ -134,7 +136,7 @@
     @media(max-width:640px){.cta h2{font-size:36px}}
     footer{padding:28px 0 36px;color:#77777f;font-size:14px}.footer-inner{text-align:center}.footer-inner a:hover{color:var(--ink)}
     @media(max-width:900px){.nav-links a:not(.button){display:none}.phone.left{left:-3%}.phone.right{right:-3%}.feature-grid{grid-template-columns:1fr}.card{min-height:240px}}
-    @media(max-width:640px){.container{width:min(calc(100% - 24px),var(--max))}.nav-inner{height:66px}.nav-links{gap:8px}.nav .button{padding:10px 14px;font-size:13px}.hero{padding-top:74px}.hero-stage{min-height:510px;margin-top:56px}.phone.center{width:246px;height:500px}.phone.left,.phone.right{width:190px;height:390px;top:60px;opacity:.72}.phone.left{left:-20%}.phone.right{right:-20%}.section{padding:86px 0}.cta{padding:68px 18px;border-radius:30px}.hero-copy{font-size:17px}.section-head p{font-size:18px}.cta p{font-size:17px}}
+    @media(max-width:640px){.container{width:min(calc(100% - 24px),var(--max))}.nav-inner{height:66px}.nav-links{gap:8px}.nav .button{padding:3.7px 14px;font-size:13px}.hero{padding-top:74px}.hero-stage{min-height:510px;margin-top:56px}.phone.center{width:246px;height:500px}.phone.left,.phone.right{width:190px;height:390px;top:60px;opacity:.72}.phone.left{left:-20%}.phone.right{right:-20%}.section{padding:86px 0}.cta{padding:68px 18px;border-radius:30px}.hero-copy{font-size:17px}.section-head p{font-size:18px}.cta p{font-size:17px}}
 
     .brand-logo{display:block;width:190px;height:auto;object-fit:contain}
     .hero-stage.real-screens{min-height:650px;display:flex;justify-content:center;align-items:flex-start;gap:28px;padding-top:10px}
@@ -178,7 +180,8 @@
       .hero{padding:74px 0 64px}
       .hero h1{font-size:40px;line-height:1.2}
       .hero-inner .hero-copy{font-size:20px}
-      .hero-stage.real-screens{max-width:370px;min-height:452px;margin-top:0}
+      .hero-stage.real-screens{max-width:370px;min-height:452px;margin-top:20px}
+      .micro{font-size:10px}
       .real-phone{border-width:6px;border-radius:38px}
       .phone-float.rear-shot{width:175px;left:3%;top:62px}
       .phone-float.front-shot{width:215px;left:39%;top:0}
@@ -194,8 +197,9 @@
       .problem-headline{font-size:32px}
     }
     @media(max-width:640px){
-      .problem{padding:70px 0}
+      .problem{padding:70px 0;background:var(--ink);color:#fff}
       .problem-headline{font-size:28px}
+      .problem-headline .typewriter-text::after{background:#fff}
     }
   </style>
 </head>
