@@ -181,7 +181,7 @@
       .phone-float.front-shot{width:290px;left:42%}
     }
     @media(max-width:640px){
-      .hero{padding:54px 0 64px}
+      .hero{padding:30px 0 64px}
       .hero h1{font-size:40px;line-height:1.2}
       .hero-inner .hero-copy{font-size:20px}
       .hero-stage.real-screens{max-width:370px;min-height:452px;margin-top:20px}
@@ -505,6 +505,15 @@
 
       document.addEventListener('click', function(e){
         if(!e.target.closest('.targeting-stage')) close();
+      });
+    })();
+
+    (function(){
+      var brand = document.querySelector('.brand');
+      if(!brand) return;
+      brand.addEventListener('click', function(e){
+        e.preventDefault();
+        window.scrollTo({top: 0, behavior: 'smooth'});
       });
     })();
 
