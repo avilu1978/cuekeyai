@@ -1,191 +1,521 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#F53C3C">
-  <meta name="description" content="CueKey AI 是專為台灣使用者打造的 AI 聊天鍵盤，幫你分析聊天情境、設定回覆目標，並生成自然、有吸引力的回覆。">
-  <meta property="og:title" content="CueKey AI｜AI 回訊息鍵盤">
-  <meta property="og:description" content="不知道怎麼回？CueKey AI 幫你想好下一句。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cuekeyai.app/">
-  <link rel="icon" href="favicon.png">
-  <link rel="apple-touch-icon" href="assets/app-icon.png">
-  <title>CueKey AI｜AI 回訊息鍵盤</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="CueKey AI 是專為台灣男生打造的 AI 聊天鍵盤——不只幫你想可以怎麼回，更告訴你為什麼要這麼回。" />
+  <meta property="og:title" content="CueKey AI 聊天鍵盤" />
+  <meta property="og:description" content="不只幫你回訊息，更教你怎麼聊天" />
+  <title>CueKey AI 聊天鍵盤</title>
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <style>
+    :root{
+      --accent:#F53C3C;
+      --accent-dark:#d92c2c;
+      --ink:#111113;
+      --muted:#67676f;
+      --line:#e9e9ec;
+      --soft:#f7f7f8;
+      --white:#fff;
+      --shadow:0 24px 80px rgba(20,20,24,.09);
+      --radius:30px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Noto Sans TC","Segoe UI",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button,a{transition:.2s ease}
+    .container{width:min(calc(100% - 40px),var(--max));margin:auto}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(233,233,236,.75)}
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:800;letter-spacing:-.03em}
+    .mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(145deg,#ff6767,var(--accent));display:grid;place-items:center;color:white;font-weight:900;box-shadow:0 8px 24px rgba(245,60,60,.24)}
+    .nav-links{display:flex;align-items:center;gap:28px;color:#55555d;font-size:15px;font-weight:600}
+    .nav-links a:not(.button):hover{color:var(--ink)}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;padding:14px 22px;background:var(--ink);color:#fff;font-weight:750;font-size:15px;letter-spacing:.04em;border:0}
+    .button:hover{transform:translateY(-2px)}
+    .button.red{background:var(--accent)}
+    .button.ghost{background:white;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+    .nav .button{padding:8px 22px;font-size:13px;letter-spacing:.12em}
+    .hero{padding:98px 0 82px;text-align:center;overflow:hidden;background:#F8F8F8}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #ffd4d4;background:#fff7f7;color:#c32626;border-radius:999px;font-weight:400;font-size:13px}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(245,60,60,.12)}
+    h1{font-size:clamp(52px,8.3vw,104px);line-height:.98;letter-spacing:-.072em;margin:26px auto 26px;max-width:1060px}
+    .accent{color:var(--accent)}
+    .hero-copy{max-width:720px;margin:0 auto;color:var(--muted);font-size:clamp(18px,2vw,23px);letter-spacing:-.02em}
+    .hero-actions{display:flex;justify-content:center;gap:12px;margin-top:34px;flex-wrap:wrap}
+    .micro{margin-top:24px;color:#92929a;font-size:13px}
+    .hero-stage{position:relative;margin:78px auto 0;max-width:1050px;min-height:590px}
+    .glow{position:absolute;inset:70px 10% 0;background:radial-gradient(circle at center,rgba(245,60,60,.15),rgba(245,60,60,0) 67%);filter:blur(10px)}
+    .phone{position:absolute;background:#121214;border:8px solid #121214;border-radius:48px;box-shadow:var(--shadow);overflow:hidden}
+    .phone.center{width:300px;height:610px;left:50%;transform:translateX(-50%);top:0;z-index:3}
+    .phone.left{width:250px;height:510px;left:10%;top:70px;transform:rotate(-7deg);z-index:2}
+    .phone.right{width:250px;height:510px;right:10%;top:70px;transform:rotate(7deg);z-index:2}
+    .section{padding:118px 0}
+    .section.soft{background:var(--soft)}
+    #features{background:#F8F8F8}
+    #demo{background:#F8F8F8}
+    #demo .section-head h2{font-size:48px;margin:0}
+    #demo .section-head .hero-copy{margin:20px auto 0}
+    @media(max-width:900px){ #demo .section-head h2{font-size:42px} }
+    @media(max-width:640px){ #demo .section-head h2{font-size:36px} }
+    #faq{background:#EEEEEE}
+    #faq .section-head h2{font-size:48px;margin:0}
+    @media(max-width:900px){ #faq .section-head h2{font-size:42px} }
+    @media(max-width:640px){ #faq .section-head h2{font-size:36px} }
+    .faq-list{max-width:760px;margin:56px auto 0;display:flex;flex-direction:column;gap:14px}
+    .faq-item{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+    .faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px;background:none;border:0;text-align:left;font-size:20px;font-weight:700;color:var(--ink);cursor:pointer;font-family:inherit}
+    .faq-icon{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:#fff1f1;color:var(--accent);display:grid;place-items:center;font-size:18px;font-weight:800;transition:transform .3s ease}
+    .faq-item.open .faq-icon{transform:rotate(45deg)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .faq-item.open .faq-answer{max-height:300px}
+    .faq-answer p{margin:0;padding:0 26px 24px;color:var(--muted);font-size:19px;line-height:1.6}
+    @media(max-width:900px){.faq-question{font-size:18px}.faq-answer p{font-size:17px}}
+    @media(max-width:640px){.faq-question{padding:18px 20px;font-size:16px}.faq-answer p{padding:0 20px 20px;font-size:15px}}
+    #customize{background:#F8F8F8}
+    #customize .section-head h2{font-size:48px;margin:0}
+    #customize .section-head .hero-copy{margin:20px auto 0}
+    @media(max-width:900px){ #customize .section-head h2{font-size:42px} }
+    @media(max-width:640px){ #customize .section-head h2{font-size:36px} }
+    #targeting{background:#F8F8F8}
+    #targeting .section-head h2{font-size:48px;margin:0}
+    #targeting .section-head .hero-copy{margin:20px auto 0}
+    @media(max-width:900px){ #targeting .section-head h2{font-size:42px} }
+    @media(max-width:640px){ #targeting .section-head h2{font-size:36px} }
+    .targeting-stage{display:flex;justify-content:center;align-items:flex-start;gap:48px;max-width:900px;margin:56px auto 0}
+    .target-col{flex:1 1 0;max-width:400px;display:flex;flex-direction:column;align-items:center}
+    .target-label{display:inline-flex;align-items:center;padding:6px 18px;margin-bottom:16px;background:#fff1f1;color:var(--accent);font-weight:800;font-size:14px;border-radius:999px}
+    .target-shot{position:relative;width:100%;border:3px solid transparent;border-radius:28px;box-shadow:var(--shadow);overflow:hidden;background:#fff;cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,border-color .35s ease}
+    .target-shot img{display:block;width:100%;height:auto}
+    .target-shot:hover{box-shadow:0 34px 74px rgba(20,20,24,.28);border-color:#F53C3C}
+    .chip-hot{position:absolute;border:2px solid transparent;background:rgba(245,60,60,0);border-radius:14px;cursor:pointer;padding:0;transition:background .2s ease,border-color .2s ease}
+    .chip-hot:hover{background:rgba(245,60,60,.10)}
+    .chip-hot.active{background:rgba(245,60,60,.14);border-color:var(--accent)}
+    .chip-backdrop{position:absolute;inset:0;background:rgba(17,17,19,.45);opacity:0;visibility:hidden;transition:opacity .25s ease;z-index:4}
+    .chip-backdrop.show{opacity:1;visibility:visible}
+    .chip-annotation{position:absolute;left:50%;top:50%;width:78%;max-width:280px;background:#fff;border-radius:18px;padding:20px 22px;box-shadow:0 24px 48px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translate(-50%,-50%) scale(.92);transition:opacity .25s ease,transform .25s ease;pointer-events:none;z-index:5}
+    .chip-annotation.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+    .chip-annotation-close{position:absolute;top:12px;right:12px;width:26px;height:26px;border:0;background:var(--soft);color:var(--muted);border-radius:50%;font-size:18px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s ease,color .2s ease}
+    .chip-annotation-close:hover{background:#ffe5e5;color:var(--accent)}
+    .chip-annotation-title{font-weight:800;font-size:15px;margin-bottom:6px;padding-right:26px;color:var(--accent)}
+    .chip-annotation-desc{font-size:13px;color:var(--muted);line-height:1.55}
+    @media(max-width:900px){
+      .targeting-stage{flex-direction:column;align-items:center;max-width:360px;gap:40px}
+      .target-col{max-width:360px;width:100%}
+    }
+    .demo-video{max-width:360px;margin:56px auto 0;background:#111;border:8px solid #111;border-radius:52px;box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+    .demo-video:hover{transform:scale(1.06);box-shadow:0 34px 74px rgba(20,20,24,.28)}
+    #customize .targeting-stage{margin-top:56px}
+    .demo-video video,.demo-video img{display:block;width:100%;height:auto}
+    .section-head{text-align:center;max-width:800px;margin:0 auto 56px}
+    .kicker{color:var(--accent);font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    h2{font-size:clamp(38px,5.5vw,68px);line-height:1.04;letter-spacing:-.055em;margin:14px 0 20px}
+    .section-head p{color:var(--muted);font-size:19px;margin:0}
+    #features .section-head h2{font-size:48px;margin:0}
+    #features .section-head .hero-copy{margin:20px auto 0}
+    @media(max-width:900px){ #features .section-head h2{font-size:42px} }
+    @media(max-width:640px){ #features .section-head h2{font-size:36px} }
+    .hero-actions .button{font-size:18px;padding:16px 26px}
+    .hero-actions .button .apple-icon{font-size:1.7em;line-height:0}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:48px 30px 30px;min-height:300px;position:relative;overflow:hidden}
+    .card:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(20,20,24,.07)}
+    .icon{width:56px;height:56px;border-radius:16px;background:#fff1f1;display:grid;place-items:center;margin:0 auto 30px}
+    .icon img{width:34px;height:34px;display:block;object-fit:contain}
+    .card h3{font-size:24px;letter-spacing:-.035em;margin:0 0 12px;text-align:center}.card p{color:var(--muted);margin:0;font-size:16px;text-align:left}
+    .cta-wrap{background:#EEEEEE;padding:0 0 80px}.cta{border-radius:42px;background:#111113;color:#fff;text-align:center;padding:90px 24px;position:relative;overflow:hidden}.cta h2{max-width:840px;margin:0 auto 24px;font-size:48px}.cta p{color:#bcbcc4;font-size:19px}.cta .button{margin-top:16px;font-size:18px;padding:16px 26px}.cta .button .apple-icon{font-size:1.7em;line-height:0}
+    @media(max-width:900px){.cta h2{font-size:42px}}
+    @media(max-width:640px){.cta h2{font-size:36px}}
+    footer{padding:28px 0 36px;color:#77777f;font-size:14px}.footer-inner{text-align:center}.footer-inner a:hover{color:var(--ink)}
+    @media(max-width:900px){.nav-links a:not(.button){display:none}.phone.left{left:-3%}.phone.right{right:-3%}.feature-grid{grid-template-columns:1fr}.card{min-height:240px}}
+    @media(max-width:640px){.container{width:min(calc(100% - 24px),var(--max))}.nav-inner{height:66px}.nav-links{gap:8px}.nav .button{padding:10px 14px;font-size:13px}.hero{padding-top:74px}.hero-stage{min-height:510px;margin-top:56px}.phone.center{width:246px;height:500px}.phone.left,.phone.right{width:190px;height:390px;top:60px;opacity:.72}.phone.left{left:-20%}.phone.right{right:-20%}.section{padding:86px 0}.cta{padding:68px 18px;border-radius:30px}.hero-copy,.section-head p{font-size:17px}.cta p{font-size:17px}}
+
+    .brand-logo{display:block;width:190px;height:auto;object-fit:contain}
+    .hero-stage.real-screens{min-height:650px;display:flex;justify-content:center;align-items:flex-start;gap:28px;padding-top:10px}
+    .hero-stage.real-screens .glow{inset:80px 12% 0}
+    @media(max-width:900px){.brand-logo{width:165px}.hero-stage.real-screens{min-height:560px;gap:16px}}
+    @media(max-width:640px){.brand-logo{width:138px}.hero-stage.real-screens{min-height:500px;gap:8px;margin-top:48px}}
+  
+    /* Hero refinements */
+    .eyebrow{color:#F53C3C}
+    .hero h1{font-size:60px;line-height:1.1;letter-spacing:-.03em}
+    .hero h1 br{content:""}
+    .hero-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:120px;align-items:center;text-align:left}
+    .hero-text{max-width:560px}
+    .hero-inner .hero-copy{margin:0;font-size:24px}
+    .hero-inner .hero-actions{justify-content:flex-start}
+    .hero-stage.real-screens{
+      position:relative;display:block;width:100%;min-height:730px;padding-top:0;margin-top:0
+    }
+    .hero-stage.real-screens .glow{inset:70px 6% 0}
+    .phone-float{position:absolute}
+    .phone-float.rear-shot{width:46%;left:0;top:58px;z-index:1}
+    .phone-float.front-shot{width:56%;left:38%;top:0;z-index:3}
+    .phone-float:hover{z-index:5}
+    .real-phone{position:relative;width:100%;margin:0;background:#111;border:8px solid #111;border-radius:52px;box-shadow:var(--shadow);overflow:hidden;transition:transform .4s cubic-bezier(.22,.8,.2,1),box-shadow .4s ease}
+    .real-phone img{display:block;width:100%;height:auto}
+    .real-phone:hover{transform:scale(1.06);box-shadow:0 34px 74px rgba(20,20,24,.24)}
+    .rear-shot .real-phone:hover{transform:scale(1.16);box-shadow:0 40px 84px rgba(20,20,24,.28)}
+    @media (prefers-reduced-motion: reduce){.real-phone{transition:none}}
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr;text-align:center}
+      .hero-text{max-width:600px;margin:0 auto}
+      .hero-inner .hero-actions{justify-content:center}
+      .hero h1{font-size:52px}
+      .hero-inner .hero-copy{font-size:22px}
+      .hero-stage.real-screens{max-width:650px;min-height:620px;margin:56px auto 0}
+      .hero-stage.real-screens .glow{inset:80px 12% 0}
+      .phone-float.rear-shot{width:240px;left:15%;top:78px}
+      .phone-float.front-shot{width:290px;left:42%}
+    }
+    @media(max-width:640px){
+      .hero h1{font-size:44px;line-height:1.2}
+      .hero-inner .hero-copy{font-size:20px}
+      .hero-stage.real-screens{max-width:370px;min-height:500px;margin-top:52px}
+      .real-phone{border-width:6px;border-radius:38px}
+      .phone-float.rear-shot{width:175px;left:3%;top:62px}
+      .phone-float.front-shot{width:215px;left:39%;top:0}
+    }
+
+    .problem{padding:100px 0;text-align:center;background:#eeeeee}
+    .problem-headline{display:flex;align-items:center;justify-content:center;font-size:36px;line-height:1.4;letter-spacing:-.02em;font-weight:800;max-width:720px;margin:0 auto;min-height:4.2em}
+    .problem-headline .accent{color:var(--accent)}
+    .problem-headline .typewriter-text::after{content:"";display:inline-block;width:3px;height:.9em;background:var(--ink);margin-left:4px;vertical-align:-0.1em;animation:caret-blink 1s steps(1) infinite}
+    @keyframes caret-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+    @media(max-width:900px){
+      .problem{padding:86px 0}
+      .problem-headline{font-size:32px}
+    }
+    @media(max-width:640px){
+      .problem{padding:70px 0}
+      .problem-headline{font-size:28px}
+    }
+  </style>
 </head>
 <body>
-  <header class="nav" id="nav">
-    <a class="brand" href="#top" aria-label="CueKey AI 首頁">
-      <img src="assets/app-icon.png" alt="">
-      <span>CueKey AI</span>
-    </a>
-    <nav aria-label="主要導覽">
-      <a href="#understand">AI 分析</a>
-      <a href="#goals">回覆目標</a>
-      <a href="#personalize">個人化</a>
-      <a class="nav-cta" href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267">免費下載</a>
-    </nav>
-  </header>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="CueKey AI 首頁"><img class="brand-logo" src="images/textlogo.png" alt="CueKey AI"></a>
+      <div class="nav-links">
+        <a href="https://cuekeyai.app/terms.html">服務條款</a><a href="https://cuekeyai.app/privacy.html">隱私政策</a>
+        <a class="button red" href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267">免費下載</a>
+      </div>
+    </div>
+  </nav>
 
   <main id="top">
     <section class="hero">
-      <div class="hero-glow glow-one"></div>
-      <div class="hero-glow glow-two"></div>
-      <div class="hero-copy reveal">
-        <p class="kicker">YOUR AI REPLY WINGMAN</p>
-        <h1>不知道怎麼回？<br><span>CueKey AI 幫你想好下一句。</span></h1>
-        <p class="hero-sub">不用離開聊天畫面。CueKey 會在鍵盤內理解情境、判斷回覆方向，並立即提供自然、有吸引力的回覆。</p>
+      <div class="container">
+        <div class="hero-inner">
+        <div class="hero-text">
+        <div class="eyebrow"><span class="dot"></span> 專為台灣男生打造的 AI 聊天鍵盤</div>
+        <h1>不只幫你回訊息，<span class="accent">更教你怎麼聊天</span></h1>
+        <p class="hero-copy">只要貼上訊息或截圖，設定好回覆目標，即可快速生成自然又會撩的回覆建議。</p>
         <div class="hero-actions">
-          <a class="store-link" href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267" aria-label="在 App Store 下載 CueKey AI">
-            <img src="assets/appstorebadge.png" alt="在 App Store 下載">
-          </a>
-          <a class="text-link" href="#story">看看它如何運作 <span>↓</span></a>
+          <a class="button red" href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267"><span class="apple-icon"></span> 到 App Store 免費下載</a>
         </div>
-        <div class="proof-row">
-          <span>✓ 不用註冊或登入</span><span>✓ 不收集個人資訊</span><span>✓ 不儲存聊天內容</span>
+        <div class="micro">iPhone/iPad・繁體中文・免註冊</div>
         </div>
-      </div>
 
-      <div class="hero-device reveal delay-1" aria-label="CueKey AI 操作示範">
-        <div class="device-shell">
-          <div class="device-island"></div>
-          <video autoplay muted loop playsinline preload="metadata" poster="assets/keyboard-auto.png">
-            <source src="assets/cuekey-demo.mp4" type="video/mp4">
-          </video>
+        <div class="hero-stage real-screens" aria-label="CueKey AI app screenshots">
+          <div class="glow"></div>
+          <div class="phone-float rear-shot"><div class="real-phone"><img src="images/screenshot1.png" alt="CueKey AI 自動判斷回覆目標"></div></div>
+          <div class="phone-float front-shot"><div class="real-phone"><img src="images/screenshot2.png" alt="CueKey AI 在聊天畫面中產生三種語氣回覆"></div></div>
         </div>
-        <div class="floating-chip chip-a">分析聊天情境</div>
-        <div class="floating-chip chip-b">3 種回覆風格</div>
-      </div>
-    </section>
-
-    <section class="statement" id="story">
-      <p class="reveal">每一句回覆，<br><strong>都在改變她對你的印象。</strong></p>
-    </section>
-
-    <section class="feature feature-dark" id="understand">
-      <div class="section-copy reveal">
-        <p class="section-label">01 / UNDERSTAND FIRST</p>
-        <h2>AI 不只是回答。<br><span>它先理解。</span></h2>
-        <p>CueKey 會先閱讀訊息或對話截圖，理解對方的情緒、聊天節奏與真正意圖，再決定最合適的回覆方向。</p>
-        <ul class="clean-list">
-          <li>理解對話前因後果</li>
-          <li>自動判斷回覆目標</li>
-          <li>提供清楚的策略說明</li>
-        </ul>
-      </div>
-      <div class="visual-stack reveal delay-1">
-        <figure class="screen-card screen-back"><img src="assets/keyboard-auto.png" alt="CueKey AI 自動判斷回覆目標"></figure>
-        <figure class="screen-card screen-front"><img src="assets/keyboard-analysis.png" alt="CueKey AI 分析聊天情境"></figure>
-      </div>
-    </section>
-
-    <section class="goals" id="goals">
-      <div class="center-copy reveal">
-        <p class="section-label">02 / REPLY WITH PURPOSE</p>
-        <h2>不只是回一句。<br><span>而是知道想達成什麼。</span></h2>
-        <p>讓 AI 自動選擇，也可以親自指定方向。從維持話題到調情、保持神秘，再到更進階的互動策略。</p>
-      </div>
-      <div class="goal-cloud reveal delay-1" aria-label="回覆目標範例">
-        <span class="hot">聊下去</span><span>調情</span><span>保持神秘</span><span>展示高價值</span>
-        <span>深度對話</span><span>發揮幽默感</span><span class="hot">播下約會種子</span>
-        <span>同理／共情</span><span>激發佔有慾</span><span>傳達社交認證</span>
-      </div>
-      <div class="wide-shot reveal">
-        <img src="assets/reply-goals.png" alt="CueKey AI 回覆目標管理畫面">
-      </div>
-    </section>
-
-    <section class="feature feature-light" id="styles">
-      <div class="result-phone reveal">
-        <img src="assets/reply-result.png" alt="CueKey AI 三種回覆風格">
-      </div>
-      <div class="section-copy dark-copy reveal delay-1">
-        <p class="section-label">03 / THREE WAYS TO REPLY</p>
-        <h2>同一個情境，<br><span>三種更好的回法。</span></h2>
-        <div class="reply-types">
-          <article><i class="dot safe"></i><div><h3>最安全</h3><p>自然穩妥，讓聊天順利延續。</p></div></article>
-          <article><i class="dot flirt"></i><div><h3>最曖昧</h3><p>增加情緒張力，拉近彼此距離。</p></div></article>
-          <article><i class="dot bold"></i><div><h3>最霸氣</h3><p>展現自信與態度，留下深刻印象。</p></div></article>
         </div>
       </div>
     </section>
 
-    <section class="coach">
-      <div class="coach-copy reveal">
-        <p class="section-label">MORE THAN AN ANSWER</p>
-        <h2>不只告訴你怎麼回。<br><span>更告訴你為什麼。</span></h2>
-        <p>每一則建議都附上策略說明。你得到的不只是可以複製的文字，也能逐漸看懂聊天中的訊號與節奏。</p>
-      </div>
-      <div class="explanation-card reveal delay-1">
-        <div class="mini-tabs"><span class="active">最安全</span><span>最曖昧</span><span>最霸氣</span></div>
-        <blockquote>「這個嘛，其實很少遇到像妳這樣讓我聊得這麼開心的。😊」</blockquote>
-        <p><strong>為什麼這樣回：</strong>模糊化數量問題，將重點轉向對方的吸引力，同時維持穩定且帶有輕微欣賞的回應。</p>
+    <section class="problem" id="problem-1">
+      <div class="container">
+        <h2 class="problem-headline"><span class="typewriter-text">你一定有過類似的經驗⋯</span></h2>
       </div>
     </section>
 
-    <section class="personalize" id="personalize">
-      <div class="center-copy reveal">
-        <p class="section-label">04 / SOUND LIKE YOU</p>
-        <h2>讓 AI 更像你，<br><span>而不是另一個人。</span></h2>
-        <p>建立個人檔案，調整訊息長度、標點、表情符號、用字風格與夾英文習慣，讓每一則回覆更貼近你的說話方式。</p>
+    <section class="section soft" id="features">
+      <div class="container">
+        <div class="section-head"><h2>聊天必備神器</h2><p class="hero-copy">有了 CueKey AI，回訊息不再卡住，聊天更有吸引力。</p></div>
+        <div class="feature-grid">
+          <article class="card"><div class="icon"><img src="images/lightning.png" alt="閃電"></div><h3>新手快速上手</h3><p>下載後，不必經過繁瑣的註冊程序，單純跟著指示完成鍵盤設定，不到兩分鐘就可以開始使用 CueKey AI。</p></article>
+          <article class="card"><div class="icon"><img src="images/finger.png" alt="適用任何環境"></div><h3>使用 CueKey AI</h3><p>只要貼上訊息或截圖，AI 就會立即分析聊天情境，自動判斷最適合的回覆目標（也可手動選擇），接著就可以按下生成鍵了。</p></article>
+          <article class="card"><div class="icon"><img src="images/mouth.png" alt="回覆口吻"></div><h3>每次三種口吻</h3><p>每次生成回覆的時候，AI 都會提供最安全、最曖昧、最霸氣三種口吻，讓你視情況自由挑選。</p></article>
+          <article class="card"><div class="icon"><img src="images/switch.png" alt="切換"></div><h3>不需要切換 App</h3><p>還在用 ChatGPT 幫你聊天嗎？使用 CueKey AI 最方便的一點，就是幾乎所有操作都在鍵盤中完成，不需要切換 App。</p></article>
+          <article class="card"><div class="icon"><img src="images/chat.png" alt="適用任何環境"></div><h3>到哪都能使用</h3><p>一旦完成鍵盤設定，無論是在哪個聊天 App（LINE、IG、Tinder⋯），你都可以打開 CueKey AI 取得回覆建議。</p></article>
+          <article class="card"><div class="icon"><img src="images/taiwan.png" alt="台灣用語"></div><h3>道地台灣用語</h3><p>有別於多數聊天鍵盤 App，CueKey AI 採用自然流暢的台灣用語，不會出現簡體字或生硬的翻譯腔。</p></article>
+        </div>
       </div>
-      <div class="personal-grid">
-        <div class="personal-shot reveal"><img src="assets/personalization.png" alt="CueKey AI 個人化回覆建議設定"></div>
-        <div class="live-style reveal delay-1">
-          <div class="profile-card">
-            <span class="avatar-initial">K</span>
-            <div><strong>Kevin，35</strong><small>軟體工程師 · 喜歡投資與攝影</small></div>
+    </section>
+
+    <section class="problem" id="problem-2">
+      <div class="container">
+        <h2 class="problem-headline"><span class="typewriter-text">CueKey AI 不只幫你想可以怎麼回⋯</span></h2>
+      </div>
+    </section>
+
+    <section class="section" id="targeting">
+      <div class="container">
+        <div class="section-head"><h2>先有目標，再有回覆</h2><p class="hero-copy">回覆目標是 CueKey AI 的核心，可以自動設定或手動選擇。</p></div>
+        <div class="targeting-stage">
+          <div class="target-col">
+            <div class="target-label">自動設定</div>
+            <div class="target-shot"><img src="images/keyboard1.png" alt="CueKey AI 自動判斷回覆目標"></div>
           </div>
-          <div class="mock-control"><span>訊息長度</span><b>簡潔</b><div class="bar"><i style="width:34%"></i></div></div>
-          <div class="mock-control"><span>表情符號</span><b>偶爾</b><div class="bar"><i style="width:57%"></i></div></div>
-          <div class="mock-control"><span>常用詞彙</span><b>口語</b><div class="bar"><i style="width:42%"></i></div></div>
-          <div class="before-after">
-            <small>一般 AI</small><p>謝謝你的關心，我今天過得很好。你呢？</p>
-            <small class="accent">CueKey AI</small><p>還不錯啊，妳突然這麼關心我，有點可疑喔 😂</p>
+          <div class="target-col">
+            <div class="target-label">手動選擇</div>
+            <div class="target-shot"><img src="images/keyboard2.png" alt="CueKey AI 手動設定回覆目標"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="keyboard-section">
-      <div class="keyboard-copy reveal">
-        <p class="section-label">BUILT INTO YOUR KEYBOARD</p>
-        <h2>不用離開聊天畫面。</h2>
-        <p>從貼上訊息、分析情境到生成回覆，幾乎所有操作都直接在鍵盤中完成。LINE、Instagram 或其他聊天 App，切換鍵盤就能使用。</p>
-      </div>
-      <div class="keyboard-shot reveal delay-1"><img src="assets/keyboard-manual.png" alt="CueKey AI 鍵盤操作畫面"></div>
-    </section>
-
-    <section class="privacy">
-      <div class="privacy-icon reveal">⌁</div>
-      <div class="reveal delay-1">
-        <p class="section-label">PRIVACY FIRST</p>
-        <h2>你的對話，<br><span>只屬於你。</span></h2>
-        <div class="privacy-points"><span>不用註冊或登入</span><span>不收集個人資訊</span><span>不儲存聊天內容</span></div>
+    <section class="problem" id="problem-3">
+      <div class="container">
+        <h2 class="problem-headline"><span class="typewriter-text">從邀約、調情、展示高價值、運用讀心術，到通過廢物測試⋯</span></h2>
       </div>
     </section>
 
-    <section class="final-cta">
-      <div class="cta-icon reveal"><img src="assets/app-icon.png" alt="CueKey AI App 圖示"></div>
-      <div class="reveal delay-1">
-        <p class="section-label">READY TO REPLY?</p>
-        <h2>聊天不卡，<br>回覆更有魅力。</h2>
-        <p>下載 CueKey AI，立即體驗更會聊天的自己。</p>
-        <a class="store-link large" href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267"><img src="assets/appstorebadge.png" alt="在 App Store 下載 CueKey AI"></a>
+    <section class="section" id="customize">
+      <div class="container">
+        <div class="section-head"><h2>為你量身訂製</h2><p class="hero-copy">在主程式管理回覆目標，或是讓 AI 回得更像你。</p></div>
+        <div class="targeting-stage">
+          <div class="target-col">
+            <div class="target-label">管理回覆目標</div>
+            <div class="target-shot"><img src="images/screenshot3.png" alt="CueKey AI 管理回覆目標"></div>
+          </div>
+          <div class="target-col">
+            <div class="target-label">個人化回覆建議</div>
+            <div class="target-shot"><img src="images/screenshot4.png" alt="CueKey AI 個人化回覆建議"></div>
+          </div>
+        </div>
       </div>
     </section>
+
+    <section class="problem" id="problem-4">
+      <div class="container">
+        <h2 class="problem-headline"><span class="typewriter-text">無論是剛認識、曖昧中，還是見過好幾次面⋯</span></h2>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="container">
+        <div class="section-head"><h2>實際螢幕錄影</h2><p class="hero-copy">從貼上訊息到發送回覆，看看 CueKey AI 如何讓聊天變簡單。</p></div>
+        <div class="demo-video">
+          <video id="demoVideo" src="videos/demo1.mp4" autoplay muted playsinline></video>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head"><h2>常見問題</h2></div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">CueKey AI 是免費的嗎？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>CueKey AI 可以免費下載與使用，但是免費版的額度只有每日三次 AI 回覆建議，付費版則享有每日 100 次 AI 回覆建議與進階功能。</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">CueKey AI 支援哪些聊天 App？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>只要是能夠開啟第三方鍵盤的 App，像是 LINE、IG、Tinder、Messenger 等，都可以使用 CueKey AI。</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">我需要註冊帳號才能使用嗎？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>不需要，CueKey AI 不需要註冊或登入，下載後完成鍵盤設定即可直接使用。</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">CueKey AI 會不會看到或儲存我的聊天內容？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>不會，CueKey AI 不會收集個人資訊，也不會儲存你的聊天內容。</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">回覆目標是什麼？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>回覆目標是你希望這則訊息達成的效果，例如調情、邀約、展示高價值等，CueKey AI 會依此生成最適合的回覆。</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">AI 生成的回覆聽起來會不會很生硬？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>不會，CueKey AI 採用自然流暢的台灣用語，並提供最安全、最曖昧、最霸氣三種口吻讓你挑選。</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">我可以自訂 AI 的回覆風格嗎？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>可以，你可以建立個人檔案，並透過調整訊息長度、標點符號、表情符號等設定來自訂聊天風格。</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">CueKey AI 支援哪些裝置？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>目前 CueKey AI 為 iPhone / iPad 專用的繁體中文版鍵盤 App。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-wrap"><div class="container"><div class="cta"><h2>你的對話，只屬於你</h2><p>不用註冊或登入・不收集個人資訊・不儲存聊天內容</p><a class="button red" href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267"><span class="apple-icon"></span> 到 App Store 免費下載</a></div></div></section>
   </main>
 
-  <footer>
-    <a class="footer-brand" href="#top"><img src="assets/app-icon.png" alt="">CueKey AI</a>
-    <div class="footer-links">
-      <a href="https://cuekeyai.app/terms.html">服務條款</a>
-      <a href="https://cuekeyai.app/privacy.html">隱私政策</a>
-      <a href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267">App Store</a>
-    </div>
-    <p>© 2026 CueKey AI</p>
-  </footer>
-  <script src="script.js"></script>
+  <footer><div class="container footer-inner">© 2026 CueKey AI・<a href="https://cuekeyai.app/terms.html">服務條款</a>・<a href="https://cuekeyai.app/privacy.html">隱私政策</a></div></footer>
+
+  <script>
+    (function(){
+      function lineText(line){ return typeof line === 'string' ? line : line.text; }
+      function accentIndex(line){
+        if(typeof line === 'string' || !line.accent) return -1;
+        return line.text.indexOf(line.accent);
+      }
+
+      function initTypewriter(container, lines){
+        var el = container.querySelector('.typewriter-text');
+        if(!el) return;
+        var lineIndex = 0, charIndex = 0, started = false;
+        var typingSpeed = 100, holdAfterTyping = 1600;
+
+        function draw(){
+          var line = lines[lineIndex];
+          var text = lineText(line);
+          var ai = accentIndex(line);
+          if(ai === -1 || charIndex <= ai){
+            el.textContent = text.slice(0, charIndex);
+          } else {
+            el.innerHTML = text.slice(0, ai) + '<span class="accent">' + text.slice(ai, charIndex) + '</span>';
+          }
+        }
+
+        function typeChar(){
+          var text = lineText(lines[lineIndex]);
+          charIndex++;
+          draw();
+          if(charIndex < text.length){
+            setTimeout(typeChar, typingSpeed);
+          } else {
+            setTimeout(function(){
+              lineIndex = (lineIndex + 1) % lines.length;
+              startLine();
+            }, holdAfterTyping);
+          }
+        }
+
+        function startLine(){
+          charIndex = 0;
+          typeChar();
+        }
+
+        function start(){
+          if(started) return;
+          started = true;
+          el.textContent = '';
+          startLine();
+        }
+
+        if('IntersectionObserver' in window){
+          var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+              if(entry.isIntersecting){
+                start();
+                io.disconnect();
+              }
+            });
+          }, {threshold:0.4});
+          io.observe(container);
+        } else {
+          start();
+        }
+      }
+
+      var problem1 = document.querySelector('#problem-1 .problem-headline');
+      if(problem1){
+        initTypewriter(problem1, [
+          '你一定有過類似的經驗⋯',
+          '每次看到她的訊息，你是否常常打了又刪、刪了又打，就是不知道怎麼回？',
+          '又或者回了之後，怕太冷、怕太油、怕聊死，更怕講錯話搞砸一切。',
+          { text: '回訊息，就交給 CueKey AI。', accent: '回訊息，就交給 CueKey AI。' }
+        ]);
+      }
+
+      var problem2 = document.querySelector('#problem-2 .problem-headline');
+      if(problem2){
+        initTypewriter(problem2, [
+          'CueKey AI 不只幫你想可以怎麼回⋯',
+          { text: '更告訴你為什麼要這麼回。', accent: '更告訴你為什麼要這麼回。' }
+        ]);
+      }
+
+      var problem3 = document.querySelector('#problem-3 .problem-headline');
+      if(problem3){
+        initTypewriter(problem3, [
+          '從邀約、調情、展示高價值、運用讀心術，到通過廢物測試⋯',
+          { text: 'CueKey AI 內建了 21 個實用、專業的回覆目標供你使用。', accent: 'CueKey AI 內建了 21 個實用、專業的回覆目標供你使用。' }
+        ]);
+      }
+
+      var problem4 = document.querySelector('#problem-4 .problem-headline');
+      if(problem4){
+        initTypewriter(problem4, [
+          '無論是剛認識、曖昧中，還是見過好幾次面⋯',
+          { text: 'CueKey AI 都能幫你想出最適合的回覆。', accent: 'CueKey AI 都能幫你想出最適合的回覆。' }
+        ]);
+      }
+    })();
+
+    (function(){
+      var hots = document.querySelectorAll('.chip-hot');
+      var annotation = document.getElementById('chipAnnotation');
+      var backdrop = document.getElementById('chipBackdrop');
+      var closeBtn = document.getElementById('chipAnnotationClose');
+      if(!hots.length || !annotation || !backdrop) return;
+      var titleEl = annotation.querySelector('.chip-annotation-title');
+      var descEl = annotation.querySelector('.chip-annotation-desc');
+
+      function close(){
+        hots.forEach(function(b){ b.classList.remove('active'); });
+        annotation.classList.remove('show');
+        backdrop.classList.remove('show');
+      }
+
+      hots.forEach(function(btn){
+        btn.addEventListener('click', function(e){
+          e.stopPropagation();
+          var wasActive = btn.classList.contains('active');
+          close();
+          if(wasActive) return;
+          btn.classList.add('active');
+          titleEl.textContent = btn.dataset.goal;
+          descEl.textContent = btn.dataset.desc;
+          annotation.classList.add('show');
+          backdrop.classList.add('show');
+        });
+      });
+
+      backdrop.addEventListener('click', close);
+      if(closeBtn){
+        closeBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          close();
+        });
+      }
+
+      document.addEventListener('click', function(e){
+        if(!e.target.closest('.targeting-stage')) close();
+      });
+    })();
+
+    (function(){
+      var video = document.getElementById('demoVideo');
+      if(!video) return;
+      video.addEventListener('ended', function(){
+        setTimeout(function(){
+          video.currentTime = 0;
+          video.play();
+        }, 3000);
+      });
+    })();
+
+    (function(){
+      var items = document.querySelectorAll('.faq-item');
+      items.forEach(function(item){
+        var btn = item.querySelector('.faq-question');
+        btn.addEventListener('click', function(){
+          item.classList.toggle('open');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
