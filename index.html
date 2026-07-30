@@ -175,14 +175,13 @@
       .phone-float.front-shot{width:290px;left:42%}
     }
     @media(max-width:640px){
-      .hero{padding:74px 0 40px}
+      .hero{padding:74px 0 64px}
       .hero h1{font-size:40px;line-height:1.2}
       .hero-inner .hero-copy{font-size:20px}
       .hero-stage.real-screens{max-width:370px;min-height:452px;margin-top:0}
       .real-phone{border-width:6px;border-radius:38px}
       .phone-float.rear-shot{width:175px;left:3%;top:62px}
       .phone-float.front-shot{width:215px;left:39%;top:0}
-      #problem-1{padding-top:30px}
     }
 
     .problem{padding:100px 0;text-align:center;background:#eeeeee}
@@ -308,7 +307,7 @@
       <div class="container">
         <div class="section-head"><h2>實際螢幕錄影</h2><p class="hero-copy">從貼上訊息到發送回覆，看看 CueKey AI 如何讓聊天變簡單。</p></div>
         <div class="demo-video" id="demoVideoWrap">
-          <video id="demoVideo" src="videos/demo1.mp4" autoplay muted playsinline></video>
+          <video id="demoVideo" src="videos/demo1.mp4" muted playsinline></video>
           <button class="video-toggle" id="videoToggle" aria-label="播放或暫停影片"></button>
         </div>
       </div>
@@ -540,6 +539,7 @@
       });
 
       updateIcon();
+      if(video.paused) toggle.classList.add('show');
     })();
 
     (function(){
