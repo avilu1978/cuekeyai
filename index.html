@@ -106,14 +106,17 @@
       .targeting-stage{flex-direction:column;align-items:center;max-width:360px;gap:40px}
       .target-col{max-width:360px;width:100%}
     }
-    .demo-video{max-width:360px;margin:56px auto 0;background:#111;border:8px solid #111;border-radius:52px;box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
-    .demo-video:hover{transform:scale(1.06);box-shadow:0 34px 74px rgba(20,20,24,.28)}
+    .demo-video{position:relative;max-width:360px;margin:56px auto 0;background:#111;border:8px solid #111;border-radius:52px;box-shadow:var(--shadow);overflow:hidden;cursor:pointer}
+    .video-toggle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:#F53C3C;border:0;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
+    .video-toggle.show{opacity:1;visibility:visible}
+    .video-toggle svg{width:26px;height:26px;fill:#fff}
     #customize .targeting-stage{margin-top:56px}
     .demo-video video,.demo-video img{display:block;width:100%;height:auto}
     .section-head{text-align:center;max-width:800px;margin:0 auto 56px}
     .kicker{color:var(--accent);font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
     h2{font-size:clamp(38px,5.5vw,68px);line-height:1.04;letter-spacing:-.055em;margin:14px 0 20px}
-    .section-head p{color:var(--muted);font-size:19px;margin:0}
+    .section-head p{color:var(--muted);font-size:22px;margin:0}
+    @media(max-width:900px){.section-head p{font-size:20px}}
     #features .section-head h2{font-size:48px;margin:0}
     #features .section-head .hero-copy{margin:20px auto 0}
     @media(max-width:900px){ #features .section-head h2{font-size:42px} }
@@ -131,7 +134,7 @@
     @media(max-width:640px){.cta h2{font-size:36px}}
     footer{padding:28px 0 36px;color:#77777f;font-size:14px}.footer-inner{text-align:center}.footer-inner a:hover{color:var(--ink)}
     @media(max-width:900px){.nav-links a:not(.button){display:none}.phone.left{left:-3%}.phone.right{right:-3%}.feature-grid{grid-template-columns:1fr}.card{min-height:240px}}
-    @media(max-width:640px){.container{width:min(calc(100% - 24px),var(--max))}.nav-inner{height:66px}.nav-links{gap:8px}.nav .button{padding:10px 14px;font-size:13px}.hero{padding-top:74px}.hero-stage{min-height:510px;margin-top:56px}.phone.center{width:246px;height:500px}.phone.left,.phone.right{width:190px;height:390px;top:60px;opacity:.72}.phone.left{left:-20%}.phone.right{right:-20%}.section{padding:86px 0}.cta{padding:68px 18px;border-radius:30px}.hero-copy,.section-head p{font-size:17px}.cta p{font-size:17px}}
+    @media(max-width:640px){.container{width:min(calc(100% - 24px),var(--max))}.nav-inner{height:66px}.nav-links{gap:8px}.nav .button{padding:10px 14px;font-size:13px}.hero{padding-top:74px}.hero-stage{min-height:510px;margin-top:56px}.phone.center{width:246px;height:500px}.phone.left,.phone.right{width:190px;height:390px;top:60px;opacity:.72}.phone.left{left:-20%}.phone.right{right:-20%}.section{padding:86px 0}.cta{padding:68px 18px;border-radius:30px}.hero-copy{font-size:17px}.section-head p{font-size:18px}.cta p{font-size:17px}}
 
     .brand-logo{display:block;width:190px;height:auto;object-fit:contain}
     .hero-stage.real-screens{min-height:650px;display:flex;justify-content:center;align-items:flex-start;gap:28px;padding-top:10px}
@@ -161,23 +164,25 @@
     .rear-shot .real-phone:hover{transform:scale(1.16);box-shadow:0 40px 84px rgba(20,20,24,.28)}
     @media (prefers-reduced-motion: reduce){.real-phone{transition:none}}
     @media(max-width:900px){
-      .hero-inner{grid-template-columns:1fr;text-align:center}
+      .hero-inner{grid-template-columns:1fr;text-align:center;gap:24px}
       .hero-text{max-width:600px;margin:0 auto}
       .hero-inner .hero-actions{justify-content:center}
-      .hero h1{font-size:52px}
+      .hero h1{font-size:50px}
       .hero-inner .hero-copy{font-size:22px}
-      .hero-stage.real-screens{max-width:650px;min-height:620px;margin:56px auto 0}
+      .hero-stage.real-screens{max-width:650px;min-height:620px;margin:0 auto}
       .hero-stage.real-screens .glow{inset:80px 12% 0}
       .phone-float.rear-shot{width:240px;left:15%;top:78px}
       .phone-float.front-shot{width:290px;left:42%}
     }
     @media(max-width:640px){
-      .hero h1{font-size:44px;line-height:1.2}
+      .hero{padding:74px 0 40px}
+      .hero h1{font-size:40px;line-height:1.2}
       .hero-inner .hero-copy{font-size:20px}
-      .hero-stage.real-screens{max-width:370px;min-height:500px;margin-top:52px}
+      .hero-stage.real-screens{max-width:370px;min-height:452px;margin-top:0}
       .real-phone{border-width:6px;border-radius:38px}
       .phone-float.rear-shot{width:175px;left:3%;top:62px}
       .phone-float.front-shot{width:215px;left:39%;top:0}
+      #problem-1{padding-top:30px}
     }
 
     .problem{padding:100px 0;text-align:center;background:#eeeeee}
@@ -302,8 +307,9 @@
     <section class="section" id="demo">
       <div class="container">
         <div class="section-head"><h2>實際螢幕錄影</h2><p class="hero-copy">從貼上訊息到發送回覆，看看 CueKey AI 如何讓聊天變簡單。</p></div>
-        <div class="demo-video">
+        <div class="demo-video" id="demoVideoWrap">
           <video id="demoVideo" src="videos/demo1.mp4" autoplay muted playsinline></video>
+          <button class="video-toggle" id="videoToggle" aria-label="播放或暫停影片"></button>
         </div>
       </div>
     </section>
@@ -498,13 +504,42 @@
 
     (function(){
       var video = document.getElementById('demoVideo');
-      if(!video) return;
+      var wrap = document.getElementById('demoVideoWrap');
+      var toggle = document.getElementById('videoToggle');
+      if(!video || !wrap || !toggle) return;
+
+      var playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+      var pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+
+      function updateIcon(){
+        toggle.innerHTML = video.paused ? playIcon : pauseIcon;
+      }
+
+      video.addEventListener('play', function(){
+        updateIcon();
+        toggle.classList.remove('show');
+      });
+      video.addEventListener('pause', function(){
+        updateIcon();
+        toggle.classList.add('show');
+      });
       video.addEventListener('ended', function(){
-        setTimeout(function(){
+        updateIcon();
+        toggle.classList.add('show');
+      });
+
+      wrap.addEventListener('click', function(){
+        if(video.ended){
           video.currentTime = 0;
           video.play();
-        }, 3000);
+        } else if(video.paused){
+          video.play();
+        } else {
+          video.pause();
+        }
       });
+
+      updateIcon();
     })();
 
     (function(){
