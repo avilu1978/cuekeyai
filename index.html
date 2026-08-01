@@ -67,7 +67,18 @@
     #demo .section-head .hero-copy{margin:20px auto 0}
     @media(max-width:900px){ #demo .section-head h2{font-size:42px} }
     @media(max-width:640px){ #demo .section-head h2{font-size:36px} }
-    #faq{background:#EEEEEE}
+    #social-proof{background:#EEEEEE}
+    #social-proof .section-head h2{font-size:48px;margin:0}
+    @media(max-width:900px){ #social-proof .section-head h2{font-size:42px} }
+    @media(max-width:640px){ #social-proof .section-head h2{font-size:36px} }
+    .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1180px;margin:56px auto 0}
+    .testimonial{background:#fff;border:1px solid var(--line);padding:28px;border-radius:24px}
+    .testimonial-stars{color:var(--accent);letter-spacing:2px;margin-bottom:14px}
+    .testimonial p{font-size:17px;margin:0 0 20px;color:var(--ink)}
+    .testimonial-person{display:flex;align-items:center;gap:12px;color:#666;font-size:14px}
+    .testimonial-avatar{width:36px;height:36px;border-radius:50%;background-color:#e4e4e7;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a3a3ab'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M12 14c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:20px 20px;border:1px solid #ddd}
+    @media(max-width:900px){.testimonial-grid{grid-template-columns:1fr;max-width:600px}}
+    #faq{background:#EEEEEE;padding-bottom:0}
     #faq .section-head h2{font-size:48px;margin:0}
     @media(max-width:900px){ #faq .section-head h2{font-size:42px} }
     @media(max-width:640px){ #faq .section-head h2{font-size:36px} }
@@ -135,12 +146,12 @@
     .icon{width:56px;height:56px;border-radius:16px;background:#fff1f1;display:grid;place-items:center;margin:0 auto 30px}
     .icon img{width:34px;height:34px;display:block;object-fit:contain}
     .card h3{font-size:24px;letter-spacing:-.035em;margin:0 0 12px;text-align:center}.card p{color:var(--muted);margin:0;font-size:16px;text-align:left}
-    .cta-wrap{background:#EEEEEE;padding:0 0 80px}.cta{border-radius:42px;background:#111113;color:#fff;text-align:center;padding:90px 24px;position:relative;overflow:hidden}.cta h2{max-width:840px;margin:0 auto 24px;font-size:48px}.cta p{color:#bcbcc4;font-size:19px}.cta .button{margin-top:16px;font-size:18px;padding:16px 26px}.cta .button .apple-icon{font-size:1.7em;line-height:0}
+    .cta-wrap{background:#EEEEEE;padding:0 0 118px}.cta{border-radius:42px;background:#111113;color:#fff;text-align:center;padding:90px 24px;position:relative;overflow:hidden}.cta h2{max-width:840px;margin:0 auto 24px;font-size:48px}.cta p{color:#bcbcc4;font-size:19px}.cta .button{margin-top:16px;font-size:18px;padding:16px 26px}.cta .button .apple-icon{font-size:1.7em;line-height:0}
     @media(max-width:900px){.cta h2{font-size:42px}}
     @media(max-width:640px){.cta h2{font-size:36px}}
-    footer{padding:28px 0 36px;color:#77777f;font-size:14px}.footer-inner{text-align:center}.footer-inner a:hover{color:var(--ink)}
+    footer{padding:28px 0 36px;color:#77777f;font-size:14px}.footer-inner{text-align:center}.footer-inner a:hover{color:var(--ink)}.footer-links-line{margin-top:8px}
     @media(max-width:900px){.nav-links a:not(.button){display:none}.phone.left{left:-3%}.phone.right{right:-3%}.feature-grid{grid-template-columns:1fr}.card{min-height:240px}}
-    @media(max-width:640px){.container{width:min(calc(100% - 24px),var(--max))}.nav-inner{height:66px}.nav-links{gap:8px}.nav .button{padding:3.7px 14px;font-size:13px}.hero{padding-top:74px}.hero-stage{min-height:510px;margin-top:56px}.phone.center{width:246px;height:500px}.phone.left,.phone.right{width:190px;height:390px;top:60px;opacity:.72}.phone.left{left:-20%}.phone.right{right:-20%}.section{padding:86px 0}.cta{padding:68px 18px;border-radius:30px}.hero-copy{font-size:17px}.section-head p{font-size:20px}.cta p{font-size:17px}.cta-item{display:block}.cta-sep{display:none}}
+    @media(max-width:640px){.container{width:min(calc(100% - 24px),var(--max))}.nav-inner{height:66px}.nav-links{gap:8px}.nav .button{padding:3.7px 14px;font-size:13px}.hero{padding-top:74px}.hero-stage{min-height:510px;margin-top:56px}.phone.center{width:246px;height:500px}.phone.left,.phone.right{width:190px;height:390px;top:60px;opacity:.72}.phone.left{left:-20%}.phone.right{right:-20%}.section{padding:86px 0}.cta{padding:68px 18px;border-radius:30px}.cta-wrap{padding-bottom:86px}.hero-copy{font-size:17px}.section-head p{font-size:20px}.cta p{font-size:17px}.cta-item{display:block}.cta-sep{display:none}}
 
     .brand-logo{display:block;width:190px;height:auto;object-fit:contain}
     .hero-stage.real-screens{min-height:650px;display:flex;justify-content:center;align-items:flex-start;gap:28px;padding-top:10px}
@@ -212,7 +223,7 @@
     <div class="container nav-inner">
       <a class="brand" href="#top" aria-label="CueKey AI 首頁"><img class="brand-logo" src="images/textlogo.png" alt="CueKey AI"></a>
       <div class="nav-links">
-        <a href="https://cuekeyai.app/terms.html">服務條款</a><a href="https://cuekeyai.app/privacy.html">隱私政策</a>
+        <a href="#features">功能介紹</a><a href="#demo">實際畫面</a><a href="#faq">常見問題</a>
         <a class="button red" href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267">免費下載</a>
       </div>
     </div>
@@ -269,7 +280,7 @@
 
     <section class="section" id="targeting">
       <div class="container">
-        <div class="section-head"><h2>先有目標，再有回覆</h2><p class="hero-copy">回覆目標是 CueKey AI 的核心，可以自動設定或手動選擇。</p></div>
+        <div class="section-head"><h2>目標不同，回覆不同</h2><p class="hero-copy">回覆目標是 CueKey AI 的核心，可以自動設定或手動選擇。</p></div>
         <div class="targeting-stage">
           <div class="target-col">
             <div class="target-label">自動模式</div>
@@ -291,7 +302,7 @@
 
     <section class="section" id="customize">
       <div class="container">
-        <div class="section-head"><h2>讓 AI 更懂你</h2><p class="hero-copy">在主程式中管理回覆目標，或是個人化回覆建議。</p></div>
+        <div class="section-head"><h2>讓回覆更到位</h2><p class="hero-copy">在主程式中管理回覆目標並建構個人化回覆建議。</p></div>
         <div class="targeting-stage">
           <div class="target-col">
             <div class="target-label">管理回覆目標</div>
@@ -326,37 +337,61 @@
         <div class="section-head"><h2>常見問題</h2></div>
         <div class="faq-list">
           <div class="faq-item">
-            <button class="faq-question">CueKey AI 是免費的嗎？<span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>CueKey AI 可以免費下載與使用，但是免費版的額度只有每日三次 AI 回覆建議，付費版則享有每日 100 次 AI 回覆建議與進階功能。</p></div>
+            <button class="faq-question">CueKey AI 和 ChatGPT 有什麼不同？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>ChatGPT 著重回答問題，而 CueKey AI 專為聊天設計。它會根據對話內容、回覆目標與使用者屬性，快速產生更自然、更符合情境的回覆建議，而且全程都在鍵盤中完成，不需要切換 App。</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">CueKey AI 支援哪些聊天 App？<span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>只要是能夠開啟第三方鍵盤的 App，像是 LINE、IG、Tinder、Messenger 等，都可以使用 CueKey AI。</p></div>
+            <button class="faq-question">CueKey AI 支援哪些 App？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>CueKey AI 是系統層級的自訂鍵盤，理論上可以在任何允許第三方鍵盤的 iOS 或 iPadOS App 中使用，包括 LINE、IG、Tinder 等聊天平台。</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">我需要註冊帳號才能使用嗎？<span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>不需要，CueKey AI 不需要註冊或登入，下載後完成鍵盤設定即可直接使用。</p></div>
+            <button class="faq-question">我需要註冊或登入才能使用嗎？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>不需要。CueKey AI 不用註冊或登入，只要完成鍵盤設定，即可立即開始使用。</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">CueKey AI 會不會看到或儲存我的聊天內容？<span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>不會，CueKey AI 不會收集個人資訊，也不會儲存你的聊天內容。</p></div>
+            <button class="faq-question">什麼是「回覆目標」？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>同一則訊息，可以有很多種回法，關鍵在於你想把對話帶往哪個方向。CueKey AI 會根據你設定的回覆目標，產生最適合當下情境的回覆建議，而不只是隨機生成一句話。</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">回覆目標是什麼？<span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>回覆目標是你希望這則訊息達成的效果，例如調情、邀約、展示高價值等，CueKey AI 會依此生成最適合的回覆。</p></div>
+            <button class="faq-question">有哪些回覆目標可以使用？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>CueKey AI 內建了 20+ 種專業、實用的回覆目標，例如邀約、調情、展示高價值、運用讀心術、通過廢物測試等等。這些目標看似南轅北轍，但是共同點就是幫助你拉近你跟對象的關係。</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">AI 生成的回覆聽起來會不會很生硬？<span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>不會，CueKey AI 採用自然流暢的台灣用語，並提供最安全、最曖昧、最霸氣三種口吻讓你挑選。</p></div>
+            <button class="faq-question">怎麼讓回覆更符合我的期待？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>與其貼上單一文字訊息，你可以嘗試貼上對話截圖；與其交由 AI 決定回覆目標，你可以嘗試手動選擇。另外，別忘了在主程式中管理回覆目標並建構個人化回覆建議。</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">我可以自訂 AI 的回覆風格嗎？<span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>可以，你可以建立個人檔案，並透過調整訊息長度、標點符號、表情符號等設定來自訂聊天風格。</p></div>
+            <button class="faq-question">我的聊天內容安全嗎？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>我們非常重視您的隱私。CueKey AI 不僅不用註冊或登入，也不會收集個人資訊或儲存聊天內容。只有你主動提供的訊息或截圖，才會用於 AI 分析與產生回覆。</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">CueKey AI 支援哪些裝置？<span class="faq-icon">+</span></button>
-            <div class="faq-answer"><p>目前 CueKey AI 為 iPhone / iPad 專用的繁體中文版鍵盤 App。</p></div>
+            <button class="faq-question">CueKey AI 可以免費使用嗎？<span class="faq-icon">+</span></button>
+            <div class="faq-answer"><p>可以。CueKey AI 可以免費下載與使用，但是免費版的額度只有每日三次 AI 回覆建議，付費版則享有每日 100 次 AI 回覆建議與進階功能。</p></div>
           </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="social-proof">
+      <div class="container">
+        <div class="section-head"><h2>看看大家怎麼說</h2></div>
+        <div class="testimonial-grid">
+          <article class="testimonial">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>「原本都用 ChatGPT 回訊息，但 CueKey AI 直接在鍵盤裡生成，不用切來切去，不用解釋一堆，方便超多～」</p>
+            <div class="testimonial-person"><div class="testimonial-avatar"></div><span>阿凱</span></div>
+          </article>
+          <article class="testimonial">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>「市面上很多聊天鍵盤app都很像，但這款真的不一樣，尤其是回覆目標的部分，非常專業!!」</p>
+            <div class="testimonial-person"><div class="testimonial-avatar"></div><span>小豪</span></div>
+          </article>
+          <article class="testimonial">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>「這不只是聊天神器，根本就是把妹神器好嗎！尤其光看那些回覆目標，就知道是內行人做的😂」</p>
+            <div class="testimonial-person"><div class="testimonial-avatar"></div><span>Jason</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -364,7 +399,7 @@
     <section class="cta-wrap"><div class="container"><div class="cta"><h2>你的對話，只屬於你</h2><p><span class="cta-item"><span class="accent">✓</span> 不用註冊或登入</span><span class="cta-sep">　</span><span class="cta-item"><span class="accent">✓</span> 不收集個人資訊</span><span class="cta-sep">　</span><span class="cta-item"><span class="accent">✓</span>  不儲存聊天內容</span></p><a class="button red" href="https://apps.apple.com/tw/app/cuekey-ai/id6761771267"><span class="apple-icon"></span> 到 App Store 免費下載</a></div></div></section>
   </main>
 
-  <footer><div class="container footer-inner">© 2026 CueKey AI・<a href="https://cuekeyai.app/terms.html">服務條款</a>・<a href="https://cuekeyai.app/privacy.html">隱私政策</a></div></footer>
+  <footer><div class="container footer-inner"><div>© 2026 CueKey AI</div><div class="footer-links-line"><a href="https://cuekeyai.app/terms.html">服務條款</a>・<a href="https://cuekeyai.app/privacy.html">隱私政策</a>・<a href="mailto:help@cuekeyai.app">聯絡我們</a></div></div></footer>
 
   <script>
     (function(){
@@ -454,7 +489,7 @@
       if(problem3){
         initTypewriter(problem3, [
           '從邀約、調情、展示高價值、運用讀心術，到通過廢物測試⋯',
-          { text: 'CueKey AI 內建了 21 個實用、專業的回覆目標供你使用。', accent: 'CueKey AI 內建了 21 個實用、專業的回覆目標供你使用。' }
+          { text: 'CueKey AI 內建了 20+ 種專業、實用的回覆目標供你使用。', accent: 'CueKey AI 內建了 20+ 種專業、實用的回覆目標供你使用。' }
         ]);
       }
 
